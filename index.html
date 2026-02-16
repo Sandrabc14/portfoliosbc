@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sandra | Web Developer </title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<script>
+  const backToTop = document.getElementById("backToTop");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 400) {
+      backToTop.classList.add("show");
+    } else {
+      backToTop.classList.remove("show");
+    }
+  });
+
+  backToTop.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+</script>
+
+<button id="backToTop">↑</button>
+
+<script>
+  const hamburger = document.getElementById("hamburger");
+  const navMenu = document.getElementById("nav-menu");
+
+  hamburger.addEventListener("click", () => {
+    navMenu.classList.toggle("active");
+    hamburger.classList.toggle("open");
+  });
+
+  document.querySelectorAll("#nav-menu a").forEach(link => {
+    link.addEventListener("click", () => {
+      navMenu.classList.remove("active");
+      hamburger.classList.remove("open");
+    });
+  });
+</script>
+
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+<h1 class="brand">Sandra <span>Barba</span></h1>
+
+
+    <ul>
+        <li><a href="#home">Inicio</a></li>
+      <li><a href="#about">Sobre mí</a></li>
+      <li><a href="#projects">Proyectos</a></li>
+      <li><a href="#contact">Contacto</a></li>
+    </ul>
+     <div class="hamburger" id="hamburger">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home" class="hero">
+
+  <div class="hero-container">
+
+    <img src="./inicio.jpeg" alt="Sandra Dev" class="profile-pic">
+
+    <h1 id="typing"></h1>
+
+    <p class="subtitle">Frontend Developer</p>
+
+    <div class="tools">
+      <i class="devicon-html5-plain colored"></i>
+      <i class="devicon-css3-plain colored"></i>
+      <i class="devicon-javascript-plain colored"></i>
+      <i class="devicon-react-original colored"></i>
+      <i class="devicon-nodejs-plain colored"></i>
+      <i class="devicon-mysql-plain colored"></i>
+      <i class="devicon-git-plain colored"></i>
+       <i class="devicon-java-plain colored"></i>
+      <i class="devicon-php-plain colored"></i>
+    </div>
+    <div class="hero-links">
+        <a href="#about">Sobre mí</a>
+        <a href="#projects">Proyectos</a>
+        <a href="#contact">Contacto</a>
+    </div>
+
+  </div>
+
+  </header>
+
+  <!-- SOBRE MI -->
+  <section id="about">
+    <h2>Sobre mí</h2>
+    <p>
+      Soy desarrolladora web especializada en frontend, con enfoque en la creación de interfaces modernas, accesibles y visualmente atractivas. Me apasiona transformar ideas en experiencias digitales intuitivas, cuidando cada detalle tanto a nivel visual como funcional.
+
+Trabajo principalmente con tecnologías como HTML, CSS y JavaScript, y disfruto especialmente diseñar interacciones, animaciones sutiles y layouts responsivos que mejoran la experiencia del usuario.
+
+Me considero una persona curiosa, organizada y orientada al aprendizaje continuo, siempre buscando escribir código limpio, escalable y fácil de mantener. Me motiva participar en proyectos donde pueda aportar creatividad, mejorar productos existentes y seguir creciendo como desarrolladora.
+    </p>
+  </section>
+
+  <!-- PROYECTOS -->
+  <section id="projects">
+    <h2>Proyectos</h2>
+
+    <div class="project-card">
+      <h3>Sueños Valenti</h3>
+      <p>Aplicación hecha para practicar entorno servidor. </p>
+     <a href="https://suenos-valenti.onrender.com"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="project-btn">
+  Ver proyecto
+</a>
+    </div>
+
+    <div class="project-card">
+      <h3>Animaciones CSS</h3>
+      <p>Animaciones y trucos hechos con CSS</p>
+      <a href="https://webcss-pied.vercel.app/" target="_blank" class="project-btn">
+        Ver proyecto
+      </a>
+    </div>
+     <div class="project-card">
+      <h3>Prueba técnica</h3>
+      <p>Aplicación de gestión de usuarios (nombre, apellido y fecha de nacimiento)</p>
+      <a href="https://github.com/Sandrabc14/prueba-tecnica1"
+   target="_blank"
+   class="project-btn">
+  Ver código
+</a>
+    </div>
+
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contact">
+    <h2>Contacto</h2>
+    <div class="contact-links"></div>
+    <p>¿Te interesa trabajar conmigo?</p>
+
+      <a href="https://www.linkedin.com/in/sandrabarbaciudad"
+       target="_blank"
+       class="contact-btn">
+      💼 LinkedIn
+    </a>
+
+ <h3>O escríbeme directamente:</h3>
+
+ <form id="contactForm"
+      action="https://formspree.io/f/maqdjyor"
+      method="POST"
+      class="contact-form">
+
+
+    <input type="text" name="name" placeholder="Tu nombre" required>
+
+    <input type="email" name="email" placeholder="Tu email" required>
+
+    <textarea name="message" placeholder="Escribe tu mensaje..." required></textarea>
+
+    <button type="submit">Enviar mensaje</button>
+
+  </form>
+   <!-- Mensaje de agradecimiento -->
+  <div id="thankYouMessage" style="display:none; text-align:center; margin-top:20px;">
+    <h2>¡Gracias por tu mensaje! 💌</h2>
+    <p>Nos pondremos en contacto contigo muy pronto.</p>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('contactForm');
+  const thankYou = document.getElementById('thankYouMessage');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+      method: form.method,
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        form.reset();
+        form.style.display = 'none';
+        thankYou.style.display = 'block';
+
+        setTimeout(() => {
+          window.location.hash = "#home";
+          form.style.display = 'block';
+          thankYou.style.display = 'none';
+        }, 3000);
+      } else {
+        alert("Oops! Algo salió mal, inténtalo de nuevo.");
+      }
+    })
+    .catch(() => {
+      alert("Oops! Algo salió mal, inténtalo de nuevo.");
+    });
+  });
+</script>
+
+<footer>
+  © 2026 Sandra Barba Ciudad · Hecho con mucho cariño 💜
+</footer>
+
+
+</body>
+</html>
