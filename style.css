@@ -587,9 +587,10 @@ body.dark-theme .project-card:hover {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .hero-inner { grid-template-columns: 1fr; text-align: center; }
-    .hero-ctas { justify-content: center; }
+    .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
+    .hero-img-wrapper { display: flex; justify-content: center; width: 100%; }
+    .hero-img-frame { width: 280px; height: 280px; }
+    .hero-ctas { justify-content: center; flex-wrap: wrap; }
     .nav-links { display: none; } /* Simplified mobile nav for now */
-    .hero-orbit { display: none; }
     .trayectoria-cols { grid-template-columns: 1fr; gap: 3rem; }
 }
