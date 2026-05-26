@@ -58,6 +58,8 @@ body {
     font-family: var(--font-body);
     background: var(--bg);
     color: var(--text);
+    overflow-x: hidden;
+    position: relative;
     line-height: 1.7;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
@@ -193,14 +195,12 @@ nav {
 .reveal-d2 { transition-delay: 0.2s; }
 .reveal-d3 { transition-delay: 0.3s; }
 
-/* ===== HERO ===== */
 .hero {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    overflow: hidden;
     padding-top: 80px; /* Offset for nav */
 }
 .hero-glow-pink {

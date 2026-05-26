@@ -4,13 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ------------------------------------------------------------------
      1. Navegación con scroll suave
      ------------------------------------------------------------------ */
-  const navLinks = document.querySelectorAll('.nav-links a, .nav-logo');
+  const navLinks = document.querySelectorAll('a[href^="#"]');
   navLinks.forEach(link => {
     link.addEventListener('click', e => {
-      e.preventDefault();
       const targetId = link.getAttribute('href').replace('#', '');
+      if (!targetId) return;
       const targetEl = document.getElementById(targetId);
       if (targetEl) {
+        e.preventDefault();
         targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
