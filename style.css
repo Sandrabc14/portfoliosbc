@@ -306,10 +306,11 @@ nav {
 }
 .btn-primary {
     background: var(--accent-pink);
-    color: var(--bg);
+    color: #ffffff; /* Always white text on the pink button */
 }
 .btn-primary:hover {
     background: var(--accent-aqua);
+    color: #080808; /* Dark text on the bright aqua background for readability */
     transform: translateY(-2px);
     box-shadow: 0 8px 28px var(--accent-glow-aqua);
 }
