@@ -80,31 +80,82 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ------------------------------------------------------------------
      4. Theme Toggle (Dark / Light)
      ------------------------------------------------------------------ */
-  const themeToggle = document.getElementById('themeToggle');
-  const body = document.body;
-  const icon = themeToggle ? themeToggle.querySelector('i') : null;
+  const themeToggleBtn = document.getElementById('themeToggle');
+  const themeIcon = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
 
-  // Check saved theme
-  const savedTheme = localStorage.getItem('portfolioTheme');
-  if (savedTheme === 'dark') {
-    body.classList.add('dark-theme');
-    if (icon) icon.className = 'fa-solid fa-sun';
-  }
+  if (themeToggleBtn && themeIcon) {
+    const isDark = localStorage.getItem('theme') === 'dark';
+    if (isDark) {
+      document.body.classList.add('dark-theme');
+      themeIcon.classList.replace('fa-moon', 'fa-sun');
+    }
 
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      body.classList.toggle('dark-theme');
-      const isDark = body.classList.contains('dark-theme');
-      localStorage.setItem('portfolioTheme', isDark ? 'dark' : 'light');
-      
-      if (icon) {
-        icon.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    themeToggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-theme');
+      if (document.body.classList.contains('dark-theme')) {
+        localStorage.setItem('theme', 'dark');
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+      } else {
+        localStorage.setItem('theme', 'light');
+        themeIcon.classList.replace('fa-sun', 'fa-moon');
       }
     });
   }
 
   /* ------------------------------------------------------------------
-     5. 3D Tilt Effect on Project Cards
+     5. Neon Stars Background
+     ------------------------------------------------------------------ */
+  const canvas = document.getElementById('starfield');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let width, height, stars;
+
+    const initStars = () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      stars = [];
+      const numStars = window.innerWidth < 768 ? 30 : 60; // Fewer on mobile
+      for (let i = 0; i < numStars; i++) {
+        stars.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: Math.random() * 1.5 + 0.5,
+          dy: Math.random() * 0.3 + 0.1,
+          color: Math.random() > 0.5 ? '#ff6ec7' : '#6affb5', // Pink & Aqua
+          alpha: Math.random() * 0.5 + 0.3
+        });
+      }
+    };
+
+    const drawStars = () => {
+      ctx.clearRect(0, 0, width, height);
+      stars.forEach(star => {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+        ctx.fillStyle = star.color;
+        ctx.globalAlpha = star.alpha;
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = star.color;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        ctx.globalAlpha = 1.0;
+        
+        star.y -= star.dy;
+        if (star.y < 0) {
+          star.y = height;
+          star.x = Math.random() * width;
+        }
+      });
+      requestAnimationFrame(drawStars);
+    };
+
+    initStars();
+    drawStars();
+    window.addEventListener('resize', initStars);
+  }
+
+  /* ------------------------------------------------------------------
+     6. 3D Tilt Effect on Project Cards
      ------------------------------------------------------------------ */
   const cards = document.querySelectorAll('.project-card');
   cards.forEach(card => {
