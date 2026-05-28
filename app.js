@@ -84,8 +84,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeIcon = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
 
   if (themeToggleBtn && themeIcon) {
-    const isDark = localStorage.getItem('theme') === 'dark';
-    if (isDark) {
+    let savedTheme = localStorage.getItem('theme');
+    if (!savedTheme) {
+      savedTheme = 'dark'; // Set dark mode as default
+    }
+
+    if (savedTheme === 'dark') {
       document.body.classList.add('dark-theme');
       themeIcon.classList.replace('fa-moon', 'fa-sun');
     }
