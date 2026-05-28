@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeIcon = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
 
   if (themeToggleBtn && themeIcon) {
-    let savedTheme = localStorage.getItem('theme');
+    let savedTheme = localStorage.getItem('portfolio_theme_v2');
     if (!savedTheme) {
       savedTheme = 'dark'; // Set dark mode as default
     }
@@ -92,15 +92,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (savedTheme === 'dark') {
       document.body.classList.add('dark-theme');
       themeIcon.classList.replace('fa-moon', 'fa-sun');
+    } else {
+      document.body.classList.remove('dark-theme');
+      themeIcon.classList.replace('fa-sun', 'fa-moon');
     }
 
     themeToggleBtn.addEventListener('click', () => {
       document.body.classList.toggle('dark-theme');
       if (document.body.classList.contains('dark-theme')) {
-        localStorage.setItem('theme', 'dark');
+        localStorage.setItem('portfolio_theme_v2', 'dark');
         themeIcon.classList.replace('fa-moon', 'fa-sun');
       } else {
-        localStorage.setItem('theme', 'light');
+        localStorage.setItem('portfolio_theme_v2', 'light');
         themeIcon.classList.replace('fa-sun', 'fa-moon');
       }
     });
